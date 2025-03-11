@@ -1,0 +1,42 @@
+name: vaultwarden
+
+services:
+  app:
+    image: vaultwarden/server:1.33.2
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vw.rnx.sh"
+      SIGNUPS_ALLOWED: "false"
+      INVITATIONS_ALLOWED: "true"
+
+      ADMIN_TOKEN: $VW_ADMIN_TOKEN
+
+      PUSH_ENABLED: "true"
+      PUSH_INSTALLATION_ID: $VW_PUSH_INSTALLATION_ID
+      PUSH_INSTALLATION_KEY: $VW_PUSH_INSTALLATION_KEY
+
+      #SMTP_HOST: $SMTP_HOST
+      #SMTP_PORT: $SMTP_PORT
+      #SMTP_SECURITY: "starttls"
+      #SMTP_USERNAME: $SMTP_USER
+      #SMTP_PASSWORD: $SMTP_PASS
+      #SMTP_FROM: "vaultwarden@noreply.rnx.sh"
+      #SMTP_FROM_NAME: "Vaultwarden"
+    volumes:
+      - vaultwarden-data:/data
+    networks:
+      - public
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.vaultwarden.rule: "Host(`vw.rnx.sh`)"
+      traefik.http.routers.vaultwarden.entrypoints: "web"
+      traefik.http.services.vaultwarden.loadbalancer.server.port: "80"
+      traefik.http.services.vaultwarden.loadbalancer.server.scheme: "http"
+
+volumes:
+  vaultwarden-data:
+    external: true
+
+networks:
+  public:
+    external: true
