@@ -1,0 +1,24 @@
+name: traefik
+
+services:
+  app:
+    image: traefik:v3.3.4
+    restart: unless-stopped
+    command:
+      - --global.checknewversion=false
+      - --global.sendanonymoususage=false
+      - --entrypoints.web.address=:80
+      #- --entrypoints.websecure.address=:443
+      - --serverstransport.insecureskipverify=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=public
+      - --providers.docker.watch=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - public
+
+networks:
+  public:
+    external: true
