@@ -1,0 +1,15 @@
+name: cloudflared
+
+services:
+  app:
+    image: cloudflare/cloudflared:2025.2.1
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      TUNNEL_TOKEN: $CF_TUNNEL_TOKEN
+    networks:
+      - public
+
+networks:
+  public:
+    external: true
