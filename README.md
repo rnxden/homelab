@@ -1,5 +1,5 @@
 <h1 align='center'>
-  🏠 RNX's Homelab 🏠
+  🏠 Arden's Homelab 🏠
 </h1>
 
 <p align='center'>
