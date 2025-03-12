@@ -15,13 +15,13 @@ services:
       PUSH_INSTALLATION_ID: $VW_PUSH_INSTALLATION_ID
       PUSH_INSTALLATION_KEY: $VW_PUSH_INSTALLATION_KEY
 
-      #SMTP_HOST: $SMTP_HOST
-      #SMTP_PORT: $SMTP_PORT
-      #SMTP_SECURITY: "starttls"
-      #SMTP_USERNAME: $SMTP_USER
-      #SMTP_PASSWORD: $SMTP_PASS
-      #SMTP_FROM: "vaultwarden@noreply.rnx.sh"
-      #SMTP_FROM_NAME: "Vaultwarden"
+      SMTP_HOST: $SMTP_HOST
+      SMTP_PORT: $SMTP_PORT
+      SMTP_SECURITY: "starttls"
+      SMTP_USERNAME: $SMTP_USER
+      SMTP_PASSWORD: $SMTP_PASS
+      SMTP_FROM: "vaultwarden@noreply.rnx.sh"
+      SMTP_FROM_NAME: "Vaultwarden"
     volumes:
       - vaultwarden-data:/data
     networks:
